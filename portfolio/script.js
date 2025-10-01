@@ -32,3 +32,35 @@ document.getElementById("btn-linkedin").addEventListener("click", () => {
 document.getElementById("btn-email").addEventListener("click", () => {
   window.location.href = "mailto:mateusdacruzdasilva74@gmail.com";
 });
+
+// ===== COMETAS DIAGONAIS =====
+function criarCometa() {
+  const cometa = document.createElement("div");
+  cometa.classList.add("cometa");
+
+  // Posição inicial vertical aleatória
+  const top = Math.random() * window.innerHeight / 2; // surge na metade superior
+  cometa.style.top = top + "px";
+
+  // Velocidade aleatória
+  const duracao = 3 + Math.random() * 2; // 3 a 5 segundos
+
+  // Animação diagonal: da direita para esquerda e descendo
+  cometa.animate(
+    [
+      { transform: `translateX(0px) translateY(0px) rotate(45deg)`, opacity: 0.8 },
+      { transform: `translateX(-${window.innerWidth + 100}px) translateY(${window.innerHeight / 2}px) rotate(45deg)`, opacity: 0 }
+    ],
+    { duration: duracao * 1000, easing: "linear" }
+  );
+
+  document.body.appendChild(cometa);
+
+  // Remove após terminar a animação
+  setTimeout(() => cometa.remove(), duracao * 1000);
+}
+
+// Cria cometas continuamente
+setInterval(criarCometa, 1000);
+
+
